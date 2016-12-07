@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html ng-app="myModule">
+<head>
+    <title>Rotuba</title>
+    <meta charset="utf-8" />
+    <script>document.write('<base href="' + document.location + '" />');</script>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <link href="Content/ui-grid.min.css" rel="stylesheet" />
+    <link href="Content/Login.css" rel="stylesheet" />
+    <style>
+        body, html, * {
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        .narbar-img {
+            height: 40px;
+            width: auto;
+            margin: -10px 0 0 -10px !important;
+            box-sizing: border-box;
+        }
+
+        .grid {
+            width: auto;
+            height: 250px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><img class="narbar-img" src="http://www.rotuba.com/wp-content/uploads/2014/05/logo2.png"></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administration <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a ui-sref="Users">Users</a></li>
+                            <li><a href="#">Policy Manager</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Production Manager <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a ui-sref="Summary">Summary</a></li>
+                            <li><a ui-sref="Labor">Labor</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a ui-sref="ChangePass">Change Password</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a ui-sref="Logoff">Log Off</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <!--<div class="container">-->
+        <!--<div ng-view></div>-->
+        <div ui-view></div>
+    <!--</div>-->
+
+    <script src="scripts/jquery-1.9.1.min.js"></script>
+    <script src="scripts/bootstrap.min.js"></script>
+    <script src="Scripts/angular.min.js"></script>
+    <script src="scripts/angular-messages.js"></script>
+    <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-messages.js"></script>-->
+    <!--<script src="scripts/angular-route.min.js"></script>-->
+    <script src="scripts/angular-ui-router.min.js"></script>
+    <script src="Scripts/ui-grid.min.js"></script>
+    <script src="Controllers/SummaryController.js"></script>
+    <script src="Controllers/LaborController.js"></script>
+    <script src="Controllers/UsersController.js"></script>
+    <script src="Controllers/LoginController.js"></script>
+    <script src="Controllers/ChangePassController.js"></script>
+    <script src="App/myApp.js"></script>
+</body>
+</html>

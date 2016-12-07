@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TeamAwesomeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Box">
+    <Key>
+      <PropertyRef Name="BoxCode" />
+    </Key>
+    <Property Name="BoxCode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BoxSize" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK__Order__BoxCode__35BCFE0A" FromRole="Box" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="DeptNo" />
+    </Key>
+    <Property Name="DeptNo" Type="Int32" Nullable="false" />
+    <Property Name="DeptName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK__User__DeptNo__2A4B4B5E" FromRole="Department" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Labor">
+    <Key>
+      <PropertyRef Name="LaborNo" />
+    </Key>
+    <Property Name="LaborNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmpID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PartNo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="OrderNo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Hours" Type="Int32" Nullable="false" />
+    <Property Name="Mins" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Labor__EmpID__4BAC3F29" FromRole="Labor" ToRole="User" />
+    <NavigationProperty Name="Part" Relationship="Self.FK__Labor__PartNo__4CA06362" FromRole="Labor" ToRole="Part" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="LoginID" />
+    </Key>
+    <Property Name="LoginID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK__User__LoginID__2B3F6F97" FromRole="Login" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="AutoNumber" />
+    </Key>
+    <Property Name="AutoNumber" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderNo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Die" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MachNo" Type="Int32" Nullable="false" />
+    <Property Name="Std" Type="Int32" Nullable="false" />
+    <Property Name="Act" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OnHrs" Type="Int32" />
+    <Property Name="Shift" Type="Int32" />
+    <Property Name="PartNo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BoxCode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PackerNo" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Box" Relationship="Self.FK__Order__BoxCode__35BCFE0A" FromRole="Order" ToRole="Box" />
+    <NavigationProperty Name="Packer" Relationship="Self.FK__Order__PackerNo__36B12243" FromRole="Order" ToRole="Packer" />
+    <NavigationProperty Name="Part" Relationship="Self.FK__Order__PartNo__34C8D9D1" FromRole="Order" ToRole="Part" />
+  </EntityType>
+  <EntityType Name="Packer">
+    <Key>
+      <PropertyRef Name="PackerNo" />
+    </Key>
+    <Property Name="PackerNo" Type="Int32" Nullable="false" />
+    <Property Name="PackerQty" Type="Int32" />
+    <Property Name="Total" Type="Int32" />
+    <Property Name="BoxCount" Type="Int32" />
+    <Property Name="Adj" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK__Order__PackerNo__36B12243" FromRole="Packer" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Part">
+    <Key>
+      <PropertyRef Name="PartNo" />
+    </Key>
+    <Property Name="PartNo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PartDesc" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Labors" Relationship="Self.FK__Labor__PartNo__4CA06362" FromRole="Part" ToRole="Labor" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK__Order__PartNo__34C8D9D1" FromRole="Part" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Permission">
+    <Key>
+      <PropertyRef Name="UserTypeNo" />
+    </Key>
+    <Property Name="UserTypeNo" Type="Int32" Nullable="false" />
+    <Property Name="UserTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AR" Type="Boolean" />
+    <Property Name="PR" Type="Boolean" />
+    <NavigationProperty Name="Users" Relationship="Self.FK__User__UserTypeNo__2C3393D0" FromRole="Permission" ToRole="User" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="EmpID" />
+    </Key>
+    <Property Name="EmpID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Desc" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DeptNo" Type="Int32" Nullable="false" />
+    <Property Name="LoginID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="UserTypeNo" Type="Int32" />
+    <NavigationProperty Name="Department" Relationship="Self.FK__User__DeptNo__2A4B4B5E" FromRole="User" ToRole="Department" />
+    <NavigationProperty Name="Labors" Relationship="Self.FK__Labor__EmpID__4BAC3F29" FromRole="User" ToRole="Labor" />
+    <NavigationProperty Name="Login" Relationship="Self.FK__User__LoginID__2B3F6F97" FromRole="User" ToRole="Login" />
+    <NavigationProperty Name="Permission" Relationship="Self.FK__User__UserTypeNo__2C3393D0" FromRole="User" ToRole="Permission" />
+  </EntityType>
+  <Association Name="FK__Order__BoxCode__35BCFE0A">
+    <End Role="Box" Type="Self.Box" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Box">
+        <PropertyRef Name="BoxCode" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="BoxCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__User__DeptNo__2A4B4B5E">
+    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="DeptNo" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="DeptNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Labor__EmpID__4BAC3F29">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Labor" Type="Self.Labor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="EmpID" />
+      </Principal>
+      <Dependent Role="Labor">
+        <PropertyRef Name="EmpID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Labor__PartNo__4CA06362">
+    <End Role="Part" Type="Self.Part" Multiplicity="1" />
+    <End Role="Labor" Type="Self.Labor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Part">
+        <PropertyRef Name="PartNo" />
+      </Principal>
+      <Dependent Role="Labor">
+        <PropertyRef Name="PartNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__User__LoginID__2B3F6F97">
+    <End Role="Login" Type="Self.Login" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="LoginID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="LoginID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order__PackerNo__36B12243">
+    <End Role="Packer" Type="Self.Packer" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Packer">
+        <PropertyRef Name="PackerNo" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="PackerNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order__PartNo__34C8D9D1">
+    <End Role="Part" Type="Self.Part" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Part">
+        <PropertyRef Name="PartNo" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="PartNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__User__UserTypeNo__2C3393D0">
+    <End Role="Permission" Type="Self.Permission" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Permission">
+        <PropertyRef Name="UserTypeNo" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="UserTypeNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TeamAwesomeEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Boxes" EntityType="Self.Box" />
+    <EntitySet Name="Departments" EntityType="Self.Department" />
+    <EntitySet Name="Labors" EntityType="Self.Labor" />
+    <EntitySet Name="Logins" EntityType="Self.Login" />
+    <EntitySet Name="Orders" EntityType="Self.Order" />
+    <EntitySet Name="Packers" EntityType="Self.Packer" />
+    <EntitySet Name="Parts" EntityType="Self.Part" />
+    <EntitySet Name="Permissions" EntityType="Self.Permission" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK__Order__BoxCode__35BCFE0A" Association="Self.FK__Order__BoxCode__35BCFE0A">
+      <End Role="Box" EntitySet="Boxes" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__User__DeptNo__2A4B4B5E" Association="Self.FK__User__DeptNo__2A4B4B5E">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Labor__EmpID__4BAC3F29" Association="Self.FK__Labor__EmpID__4BAC3F29">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Labor" EntitySet="Labors" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Labor__PartNo__4CA06362" Association="Self.FK__Labor__PartNo__4CA06362">
+      <End Role="Part" EntitySet="Parts" />
+      <End Role="Labor" EntitySet="Labors" />
+    </AssociationSet>
+    <AssociationSet Name="FK__User__LoginID__2B3F6F97" Association="Self.FK__User__LoginID__2B3F6F97">
+      <End Role="Login" EntitySet="Logins" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order__PackerNo__36B12243" Association="Self.FK__Order__PackerNo__36B12243">
+      <End Role="Packer" EntitySet="Packers" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order__PartNo__34C8D9D1" Association="Self.FK__Order__PartNo__34C8D9D1">
+      <End Role="Part" EntitySet="Parts" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__User__UserTypeNo__2C3393D0" Association="Self.FK__User__UserTypeNo__2C3393D0">
+      <End Role="Permission" EntitySet="Permissions" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

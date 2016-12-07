@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html ng-app="myModule">
+<head>
+    <title>Rotuba</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<script>document.write('<base href="' + document.location + '" />');</script>-->
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <link href="Content/ui-grid.min.css" rel="stylesheet" />
+    <link href="Content/main.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" ng-controller="IndexController">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><img class="narbar-img" src="http://www.rotuba.com/wp-content/uploads/2014/05/logo2.png"></a>
+            </div>            
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul ng-show="isAuthed" class="nav navbar-nav navbar-right">
+                    <li ng-show="isAuthed.AR" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administration <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a ui-sref="Users">Users</a></li>
+                            <li ng-show="isAuthed.UserTypeName == 'SuperAdmin'"><a ui-sref="PolicyManager">Policy Manager</a></li>
+                        </ul>
+                    </li>
+                    <li ng-show="isAuthed.PR" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Production Manager <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a ui-sref="Summary">Summary</a></li>
+                            <li><a ui-sref="Labor">Labor</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{isAuthed.username}}
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a ui-sref="ChangePass">Change Password</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a ui-sref="Login">Log Off</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="container bg-img">
+            <main ui-view></main>
+    </div>
+
+    <script src="scripts/jquery-1.9.1.min.js"></script>
+    <script src="scripts/bootstrap.min.js"></script>
+
+    <!-- angular scripts -->
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/angular-animate.min.js"></script>
+    <script src="scripts/ui-grid.min.js"></script>
+    <script src="scripts/angular-messages.min.js"></script>
+    <script src="scripts/angular-ui-router.min.js"></script>
+    <script src="scripts/ngStorage.min.js"></script>
+    <script src="scripts/angular-local-storage.js"></script>
+    
+    <!-- application scripts -->    
+    <script src="Controllers/IndexController.js"></script>
+    <script src="Controllers/SummaryController.js"></script>
+    <script src="Controllers/LoginController.js"></script>
+    <script src="Controllers/LaborController.js"></script>
+    <script src="Controllers/UsersController.js"></script>
+    <script src="Controllers/ChangePassController.js"></script>
+    <script src="Controllers/PolicyManagerController.js"></script>
+    <script src="App/myApp.js"></script>
+    <script src="app-services/authentication.service.js"></script>
+
+    <!-- scripts for fake backend -->
+    <!--<script src="scripts/angular-mocks.js"></script>
+    <script src="app-helpers/fake-backend.js"></script>-->
+</body>
+</html>

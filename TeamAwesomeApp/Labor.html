@@ -1,0 +1,68 @@
+﻿
+<div ng-controller="LaborController">
+    <h2 class="page-header">Labor</h2>
+    <div class="row grid-info">
+        <button class="white-btn pull-right" data-toggle="modal" data-target="#AddLabor">Add Labor</button>
+    </div>
+    <div class="row">
+        <div class="grid" ui-grid="gridOptions"></div>
+    </div>
+    <form name="form" novalidate>
+        <!--modal-->
+        <div id="AddLabor" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-md">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">New Labor</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="Emp#">EmpName</label>
+                                <select ng-model="NewLabor.EmpID" class="form-control" placeholder="EmpID" name="EmpID" required>
+                                    <option ng-repeat="e in EmpList" value="{{e.id}}">{{e.FullName}}</option>
+                                </select>
+                                <div style="color:red" ng-show="form.EmpID.$touched && form.EmpID.$invalid">EmpName is required</div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="Order#">OrderNo</label>
+                                <select ng-model="NewLabor.OrderNo" class="form-control" placeholder="OrderNo" name="OrderNo" required>
+                                    <option ng-repeat="o in OrderList" value="{{o.id}}">{{o.Order}}</option>
+                                </select>
+                                <div style="color:red" ng-show="form.OrderNo.$touched&& form.OrderNo.$invalid">OrderNo is required</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="Part#">PartNo</label>
+                                <select ng-model="NewLabor.PartNo" class="form-control" placeholder="PartNo" name="PartNo" required>
+                                    <option ng-repeat="p in PartList" value="{{p.id}}">{{p.PartName}}</option>
+                                </select>
+                                <div style="color:red" ng-show="form.PartNo.$touched && form.PartNo.$invalid">PartNo is required</div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="Hours">hours</label>
+                                <input type="number" min="0" class="form-control" ng-model="NewLabor.Hours" placeholder="Hours" name="hours" required />
+                                <div style="color:red" ng-show="form.hours.$touched && form.hours.$invalid">Hours is required and must be bigger than 0!</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="Mins">Mins</label>
+                                <input type="number" min="0" max="59" class="form-control" ng-model="NewLabor.Mins" placeholder="Mins" name="mins" required />
+                                <div style="color:red" ng-show="form.mins.$touched && form.mins.$invalid">Mins is required and must be between 0 to 59!</div>
+                                
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" ng-click="form.$valid && AddLabor(newLabor)" class="btn btn-default" ng-disabled="form.$invalid">Add</button>
+                            <button type="button" class="btn btn-default" ng-click="reset()" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

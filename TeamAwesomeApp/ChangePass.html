@@ -1,0 +1,29 @@
+﻿ <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4 margin-top" ng-controller="ChangePassController">
+    <h2>Change Password</h2>
+    <form name="form" novalidate>
+        <div class="form-group">
+            <label for="newPassword">New Password</label>
+            <input type="password" name="newpass" class="form-control" ng-model="vm.Password" required />
+            <div style="color:red" ng-show="form.$submitted && form.newpass.$invalid && !submitted">New password is required.</div>
+
+        </div>
+        <div class="form-group">
+            <label for="ConfirmPassword">Confirm Password</label>
+            <input type="password" name="confirmpass" class="form-control" ng-model="vm.confirmPassword" required compare-to="vm.Password" />
+
+            <!--http://odetocode.com/blogs/scott/archive/2014/10/13/confirm-password-validation-in-angularjs.aspx-->
+            <div ng-messages="form.$submitted  && !submitted &&form.confirmpass.$error" style="color:red" role="alert">
+                <div ng-message="required">Confirmation is Required</div>
+                <div ng-message="compareTo">Must match the previous entry</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <button ng-disabled="vm.loading" ng-click="form.$valid && vm.submit()" class="light-btn">Submit</button>
+        </div>
+
+        <div ng-if="vm.update" class="alert alert-success">{{vm.update}}</div>
+
+
+
+    </form>
+</div>

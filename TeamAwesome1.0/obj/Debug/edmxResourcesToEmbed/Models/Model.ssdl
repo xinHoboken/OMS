@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TeamAwesomeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Box">
+    <Key>
+      <PropertyRef Name="BoxCode" />
+    </Key>
+    <Property Name="BoxCode" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="BoxSize" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="DeptNo" />
+    </Key>
+    <Property Name="DeptNo" Type="int" Nullable="false" />
+    <Property Name="DeptName" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Labor">
+    <Key>
+      <PropertyRef Name="LaborNo" />
+    </Key>
+    <Property Name="LaborNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmpID" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="PartNo" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="OrderNo" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Hours" Type="int" Nullable="false" />
+    <Property Name="Mins" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="LoginID" />
+    </Key>
+    <Property Name="LoginID" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="AutoNumber" />
+    </Key>
+    <Property Name="AutoNumber" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderNo" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="OrderDate" Type="datetime" Nullable="false" />
+    <Property Name="Die" Type="varchar" MaxLength="50" />
+    <Property Name="MachNo" Type="int" Nullable="false" />
+    <Property Name="Std" Type="int" Nullable="false" />
+    <Property Name="Act" Type="varchar" MaxLength="50" />
+    <Property Name="OnHrs" Type="int" />
+    <Property Name="Shift" Type="int" />
+    <Property Name="PartNo" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="BoxCode" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="PackerNo" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Packer">
+    <Key>
+      <PropertyRef Name="PackerNo" />
+    </Key>
+    <Property Name="PackerNo" Type="int" Nullable="false" />
+    <Property Name="PackerQty" Type="int" />
+    <Property Name="Total" Type="int" />
+    <Property Name="BoxCount" Type="int" />
+    <Property Name="Adj" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Part">
+    <Key>
+      <PropertyRef Name="PartNo" />
+    </Key>
+    <Property Name="PartNo" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="PartDesc" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Permission">
+    <Key>
+      <PropertyRef Name="UserTypeNo" />
+    </Key>
+    <Property Name="UserTypeNo" Type="int" Nullable="false" />
+    <Property Name="UserTypeName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="AR" Type="bit" />
+    <Property Name="PR" Type="bit" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="EmpID" />
+    </Key>
+    <Property Name="EmpID" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="FName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Desc" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="DeptNo" Type="int" Nullable="false" />
+    <Property Name="LoginID" Type="varchar" MaxLength="255" />
+    <Property Name="UserTypeNo" Type="int" />
+  </EntityType>
+  <Association Name="FK__Labor__EmpID__4BAC3F29">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Labor" Type="Self.Labor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="EmpID" />
+      </Principal>
+      <Dependent Role="Labor">
+        <PropertyRef Name="EmpID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Labor__PartNo__4CA06362">
+    <End Role="Part" Type="Self.Part" Multiplicity="1" />
+    <End Role="Labor" Type="Self.Labor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Part">
+        <PropertyRef Name="PartNo" />
+      </Principal>
+      <Dependent Role="Labor">
+        <PropertyRef Name="PartNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order__BoxCode__35BCFE0A">
+    <End Role="Box" Type="Self.Box" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Box">
+        <PropertyRef Name="BoxCode" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="BoxCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order__PackerNo__36B12243">
+    <End Role="Packer" Type="Self.Packer" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Packer">
+        <PropertyRef Name="PackerNo" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="PackerNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order__PartNo__34C8D9D1">
+    <End Role="Part" Type="Self.Part" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Part">
+        <PropertyRef Name="PartNo" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="PartNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__User__DeptNo__2A4B4B5E">
+    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="DeptNo" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="DeptNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__User__LoginID__2B3F6F97">
+    <End Role="Login" Type="Self.Login" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="LoginID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="LoginID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__User__UserTypeNo__2C3393D0">
+    <End Role="Permission" Type="Self.Permission" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Permission">
+        <PropertyRef Name="UserTypeNo" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="UserTypeNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TeamAwesomeModelStoreContainer">
+    <EntitySet Name="Box" EntityType="Self.Box" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Labor" EntityType="Self.Labor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Packer" EntityType="Self.Packer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Part" EntityType="Self.Part" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Permission" EntityType="Self.Permission" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Labor__EmpID__4BAC3F29" Association="Self.FK__Labor__EmpID__4BAC3F29">
+      <End Role="User" EntitySet="User" />
+      <End Role="Labor" EntitySet="Labor" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Labor__PartNo__4CA06362" Association="Self.FK__Labor__PartNo__4CA06362">
+      <End Role="Part" EntitySet="Part" />
+      <End Role="Labor" EntitySet="Labor" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order__BoxCode__35BCFE0A" Association="Self.FK__Order__BoxCode__35BCFE0A">
+      <End Role="Box" EntitySet="Box" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order__PackerNo__36B12243" Association="Self.FK__Order__PackerNo__36B12243">
+      <End Role="Packer" EntitySet="Packer" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order__PartNo__34C8D9D1" Association="Self.FK__Order__PartNo__34C8D9D1">
+      <End Role="Part" EntitySet="Part" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK__User__DeptNo__2A4B4B5E" Association="Self.FK__User__DeptNo__2A4B4B5E">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK__User__LoginID__2B3F6F97" Association="Self.FK__User__LoginID__2B3F6F97">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK__User__UserTypeNo__2C3393D0" Association="Self.FK__User__UserTypeNo__2C3393D0">
+      <End Role="Permission" EntitySet="Permission" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

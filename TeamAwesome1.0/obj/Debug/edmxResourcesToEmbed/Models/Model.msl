@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TeamAwesomeModelStoreContainer" CdmEntityContainer="TeamAwesomeEntities1">
+    <EntitySetMapping Name="Boxes">
+      <EntityTypeMapping TypeName="TeamAwesomeModel.Box">
+        <MappingFragment StoreEntitySet="Box">
+          <ScalarProperty Name="BoxCode" ColumnName="BoxCode" />
+          <ScalarProperty Name="BoxSize" ColumnName="BoxSize" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="TeamAwesomeModel.Department">
+        <MappingFragment StoreEntitySet="Department">
+          <ScalarProperty Name="DeptNo" ColumnName="DeptNo" />
+          <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Labors">
+      <EntityTypeMapping TypeName="TeamAwesomeModel.Labor">
+        <MappingFragment StoreEntitySet="Labor">
+          <ScalarProperty Name="LaborNo" ColumnName="LaborNo" />
+          <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+          <ScalarProperty Name="PartNo" ColumnName="PartNo" />
+          <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+          <ScalarProperty Name="Hours" ColumnName="Hours" />
+          <ScalarProperty Name="Mins" ColumnName="Mins" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Logins">
+      <EntityTypeMapping TypeName="TeamAwesomeModel.Login">
+        <MappingFragment StoreEntitySet="Login">
+          <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="TeamAwesomeModel.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="AutoNumber" ColumnName="AutoNumber" />
+          <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="Die" ColumnName="Die" />
+          <ScalarProperty Name="MachNo" ColumnName="MachNo" />
+          <ScalarProperty Name="Std" ColumnName="Std" />
+          <ScalarProperty Name="Act" ColumnName="Act" />
+          <ScalarProperty Name="OnHrs" ColumnName="OnHrs" />
+          <ScalarProperty Name="Shift" ColumnName="Shift" />
+          <ScalarProperty Name="PartNo" ColumnName="PartNo" />
+          <ScalarProperty Name="BoxCode" ColumnName="BoxCode" />
+          <ScalarProperty Name="PackerNo" ColumnName="PackerNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Packers">
+      <EntityTypeMapping TypeName="TeamAwesomeModel.Packer">
+        <MappingFragment StoreEntitySet="Packer">
+          <ScalarProperty Name="PackerNo" ColumnName="PackerNo" />
+          <ScalarProperty Name="PackerQty" ColumnName="PackerQty" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="BoxCount" ColumnName="BoxCount" />
+          <ScalarProperty Name="Adj" ColumnName="Adj" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Parts">
+      <EntityTypeMapping TypeName="TeamAwesomeModel.Part">
+        <MappingFragment StoreEntitySet="Part">
+          <ScalarProperty Name="PartNo" ColumnName="PartNo" />
+          <ScalarProperty Name="PartDesc" ColumnName="PartDesc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Permissions">
+      <EntityTypeMapping TypeName="TeamAwesomeModel.Permission">
+        <MappingFragment StoreEntitySet="Permission">
+          <ScalarProperty Name="UserTypeNo" ColumnName="UserTypeNo" />
+          <ScalarProperty Name="UserTypeName" ColumnName="UserTypeName" />
+          <ScalarProperty Name="AR" ColumnName="AR" />
+          <ScalarProperty Name="PR" ColumnName="PR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="TeamAwesomeModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+          <ScalarProperty Name="FName" ColumnName="FName" />
+          <ScalarProperty Name="LName" ColumnName="LName" />
+          <ScalarProperty Name="Desc" ColumnName="Desc" />
+          <ScalarProperty Name="DeptNo" ColumnName="DeptNo" />
+          <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+          <ScalarProperty Name="UserTypeNo" ColumnName="UserTypeNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

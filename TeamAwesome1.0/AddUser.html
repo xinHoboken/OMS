@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Controllers/UsersController.js"></script>
+</head>
+<body data-ng-app="app" data-ng-controller="UsersController">
+    <h1>User Information</h1>
+    <form name="myForm">
+        <table>
+            <tr>
+                <td>
+                    Employee ID
+                </td>
+                <td>
+                    First Name
+                </td>
+                <td>
+                    Last Name
+                </td>
+                <td>
+                    Description
+                </td>
+                <td>
+                    Login ID
+                </td>
+                <td>
+                    Department No
+                </td>
+                <td>
+                    User Type No
+                </td>
+            </tr>
+            <tr data-ng-repeat="usr in Users">
+                <td>
+                    {{usr.EmpID}}
+                </td>
+                <td>
+                    {{usr.FName}}
+                </td>
+                <td>
+                    {{usr.LName}}
+                </td>
+                <td>
+                    {{usr.Desc}}
+                </td>
+                <td>
+                    {{usr.LoginID}}
+                </td>
+                <td>
+                    {{usr.DeptNo}}
+                </td>
+                <td>
+                    {{usr.UserTypeNo}}
+                </td>
+            </tr>
+            <tr></tr>
+            <tr></tr>
+            <tr></tr>
+            <tr>
+                <td>
+                    Employee ID
+                </td>
+                <td>
+                    <input type="text" data-ng-model="User.EmpID" required />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    First Name
+                </td>
+                <td>
+                    <input type="text" data-ng-model="User.FName" required />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Last Name
+                </td>
+                <td>
+                    <input type="text" data-ng-model="User.LName" required />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Description
+                </td>
+                <td>
+                    <input type="text" data-ng-model="User.Desc" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Login ID
+                </td>
+                <td>
+                    <input type="text" data-ng-model="User.LoginID" required />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Department No
+                </td>
+                <td>
+                    <input type="text" data-ng-model="User.DeptNo" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    User Type Number
+                </td>
+                <td>
+                    <input type="text" data-ng-model="User.UserTypeNo" required />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Save" data-ng-click="add(User)" data-ng-disabled="myForm.user.$dirty && myForm.user.$invalid ||
+  myForm.User.EmpID.$dirty && myForm.User.EmpID.$invalid ||
+  myForm.User.FName.$dirty && myForm.User.FName.$invalid ||
+  myForm.User.LName.$dirty && myForm.User.LName.$invalid ||" />
+
+                    <input type="reset" value="Clear" data-ng-click="ClearFields()" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
